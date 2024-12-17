@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <cmath>
 #include <iostream>
 #include <string>
 
@@ -22,15 +24,37 @@ double CorrectInputNumber() {
 }
 
 std::string NormalToBinary(double NormalNum) {
-  std::string IntegerPart = "";
-  std::string FractionalPart = "";
-  std::string NormalNumStr = std::to_string(NormalNum);
+  std::string IntegerPartStr = "";
+  std::string FractionalPartStr = "";
   std::string BinaryNum = "";
   std::string sign = NormalNum < 0 ? "1" : "0";
-  int DotIndex = NormalNumStr.find(".");
-  IntegerPart = IntegerPart.insert(0, NormalNumStr, 0, DotIndex);
-  FractionalPart = NormalNumStr.substr(DotIndex + 1);
-  return FractionalPart;
+  // разделяем исходное число на целую и дробную часть
+  double IntegerPart = 0;
+  double FractionalPart = 0;
+
+  FractionalPart = modf(NormalNum, &IntegerPart);
+  int IntegerPartAsInt = static_cast<int>(IntegerPart);
+  IntegerPartStr = std::to_string(static_cast<int>(IntegerPart));
+  // переводим в двоичную систему счисления целую часть
+  int TempInt = IntegerPartAsInt;
+  std::string RemaindersInt = "";
+  while (TempInt != 0) {
+    int Remainder = TempInt % 2;
+    TempInt /= 2;
+    RemaindersInt.insert(0, std::to_string(Remainder));
+  }
+  // переводим в двоичную систему счисления дробную часть
+  double TempFrac = FractionalPart;
+  std::string RemaindersFrac = "";
+  int i = 0;
+  while (TempFrac != 0 && i < 12) {
+    TempFrac *= 2;
+    int Remainder = static_cast<int>(TempFrac);
+    TempFrac = TempFrac - Remainder;
+    RemaindersFrac.append(std::to_string(Remainder));
+    ++i;
+  }
+  return RemaindersFrac;
 }
 
 int main() {
