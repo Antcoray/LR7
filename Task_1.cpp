@@ -2,6 +2,32 @@
 #include <iostream>
 #include <string>
 
+int correctInputk() {
+  std::cout << "[1 - да / 0 - нет]";
+  int x = 0;
+  bool incorrectInput = false;
+  do {
+    incorrectInput = false;
+    std::cin >> x;
+    if (std::cin.fail() || std::cin.peek() != '\n' || std::cin.peek() == '.') {
+      std::cin.clear();
+      std::cout << "Некорректный ввод" << std::endl;
+      std::cin.ignore(1000000, '\n');
+      incorrectInput = true;
+    }
+    if (x != 1 && x != 0) {
+      std::cout << "Некорректный ввод" << std::endl;
+      incorrectInput = true;
+    }
+  } while (incorrectInput);
+  return x;
+}
+
+void intro() {
+  std::cout << "Условие задания: перевести числа из естественной формы в "
+               "обратный код \n";
+}
+
 int CorrectInputNumber() {
   bool incorrect_input = false;
   bool error = false;
@@ -67,8 +93,16 @@ std::string NormalToBinary(double NormalNum) {
 }
 
 int main() {
-  int NormalNum = CorrectInputNumber();
-  std::string BinaryNum = NormalToBinary(NormalNum);
-  std::cout << BinaryNum;
+  intro();
+  while (true) {
+    int NormalNum = CorrectInputNumber();
+    std::string BinaryNum = NormalToBinary(NormalNum);
+    std::cout << BinaryNum;
+    std::cout << "продолжить выполнение задания 1?\n";
+    int a = correctInputk();
+    if (a == 0) {
+      break;
+    }
+  }
   return 0;
 }
