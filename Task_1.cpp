@@ -55,7 +55,7 @@ int CorrectInputNumber() {
   return static_cast<int>(NumInput);
 }
 
-std::string NormalToBinary(double NormalNum) {
+std::string NormalToBinaryReverse(double NormalNum) {
   if (NormalNum == 0) {
     return "00000000000000000000000000000000";
   }
@@ -78,7 +78,7 @@ std::string NormalToBinary(double NormalNum) {
   RemaindersInt.insert(0, 31 - RemaindersInt.length(), '0');
 
   if (sign == "0") {
-    BinaryNum = RemaindersInt;
+    BinaryNum = sign + RemaindersInt;
   } else {
     for (char& c : RemaindersInt) {
       if (c == '0') {
@@ -87,7 +87,7 @@ std::string NormalToBinary(double NormalNum) {
         c = '0';
       }
     }
-    BinaryNum = RemaindersInt;
+    BinaryNum = sign + RemaindersInt;
   }
   return BinaryNum;
 }
@@ -95,9 +95,12 @@ std::string NormalToBinary(double NormalNum) {
 int main() {
   intro();
   while (true) {
+    std::cout
+        << "Введите число в естественной форме для перевода в обратный код\n";
     int NormalNum = CorrectInputNumber();
-    std::string BinaryNum = NormalToBinary(NormalNum);
-    std::cout << BinaryNum;
+    std::string BinaryNum = NormalToBinaryReverse(NormalNum);
+
+    std::cout << "Обратный код числа: " << BinaryNum << '\n';
     std::cout << "продолжить выполнение задания 1?\n";
     int a = correctInputk();
     if (a == 0) {
