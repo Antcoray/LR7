@@ -56,79 +56,11 @@ int CorrectInputNumber() {
   return static_cast<int>(NumInput);
 }
 
-std::string NormalToBinary(double NormalNum) {
-  if (NormalNum == 0) {
-    return "00000000000000000000000000000000";
-  }
-  std::string IntegerPartStr = "";
-  std::string BinaryNum = "";
-  std::string sign = NormalNum < 0 ? "1" : "0";
-
-  int IntegerPart = abs(NormalNum);
-  IntegerPartStr = std::to_string(static_cast<int>(IntegerPart));
-
-  int TempInt = IntegerPart;
-  std::string RemaindersInt = "";
-
-  while (TempInt != 0) {
-    int Remainder = TempInt % 2;
-    TempInt /= 2;
-    RemaindersInt.insert(0, std::to_string(Remainder));
-  }
-
-  RemaindersInt.insert(0, 31 - RemaindersInt.length(), '0');
-
-  BinaryNum = sign + RemaindersInt;
-
-  return BinaryNum;
-}
-
-std::string NormalToBinaryReverse(double NormalNum) {
-  if (NormalNum == 0) {
-    return "00000000000000000000000000000000";
-  }
-  std::string IntegerPartStr = "";
-  std::string BinaryNum = "";
-  std::string sign = NormalNum < 0 ? "1" : "0";
-
-  int IntegerPart = abs(NormalNum);
-  IntegerPartStr = std::to_string(static_cast<int>(IntegerPart));
-
-  int TempInt = IntegerPart;
-  std::string RemaindersInt = "";
-
-  while (TempInt != 0) {
-    int Remainder = TempInt % 2;
-    TempInt /= 2;
-    RemaindersInt.insert(0, std::to_string(Remainder));
-  }
-
-  RemaindersInt.insert(0, 31 - RemaindersInt.length(), '0');
-
-  if (sign == "0") {
-    BinaryNum = sign + RemaindersInt;
-  } else {
-    for (char& c : RemaindersInt) {
-      if (c == '0') {
-        c = '1';
-      } else {
-        c = '0';
-      }
-    }
-    BinaryNum = sign + RemaindersInt;
-  }
-  return BinaryNum;
-}
-
-std::string sum(std::string left, std::string right) {
+std::string Sum(std::string left, std::string right) {
   std::string sum(32, '0');
   int NumberOfSymbols = 32;
   std::string temp = "0";
   for (int i = 0; i < 32; ++i) {
-    //
-    char li = left[31];
-    char ri = right[31];
-
     // 0 0 0
     if (left[31 - i] == '0' && right[31 - i] == '0' && temp == "0") {
       sum[31 - i] = '0';
@@ -179,7 +111,73 @@ std::string sum(std::string left, std::string right) {
     }
   }
 
+  if (temp == "1") {
+    sum = Sum("00000000000000000000000000000001", sum);
+  }
   return sum;
+}
+
+std::string ReverseToStraight(std::string sum) {
+  if (sum[0] == '1') {
+    for (int i = 1; i < 32; ++i) {
+      if (sum[i] == '0') {
+        sum[i] = '1';
+      } else {
+        sum[i] = '0';
+      }
+    }
+  }
+  return sum;
+}
+
+std::string NormalToBinaryReverse(double NormalNum) {
+  if (NormalNum == 0) {
+    return "00000000000000000000000000000000";
+  }
+  std::string IntegerPartStr = "";
+  std::string BinaryNum = "";
+  std::string sign = NormalNum < 0 ? "1" : "0";
+
+  int IntegerPart = abs(NormalNum);
+  IntegerPartStr = std::to_string(static_cast<int>(IntegerPart));
+
+  int TempInt = IntegerPart;
+  std::string RemaindersInt = "";
+
+  while (TempInt != 0) {
+    int Remainder = TempInt % 2;
+    TempInt /= 2;
+    RemaindersInt.insert(0, std::to_string(Remainder));
+  }
+
+  RemaindersInt.insert(0, 31 - RemaindersInt.length(), '0');
+
+  if (sign == "0") {
+    BinaryNum = sign + RemaindersInt;
+  } else {
+    for (char& c : RemaindersInt) {
+      if (c == '0') {
+        c = '1';
+      } else {
+        c = '0';
+      }
+    }
+    BinaryNum = sign + RemaindersInt;
+  }
+  return BinaryNum;
+}
+
+int binaryToNormal(std::string BinaryNum) {
+  int NormalNum = 0;
+  for (int i = 1; i < 32; ++i) {
+    if (BinaryNum[i] == '1') {
+      NormalNum += pow(2, 31 - i);
+    }
+  }
+  if (BinaryNum[0] == '1') {
+    return -NormalNum;
+  }
+  return NormalNum;
 }
 
 int main() {
@@ -188,9 +186,9 @@ int main() {
     std::cout << "Введите первое число:\n";
 
     int NormalNumLeft = CorrectInputNumber();
-    std::string BinaryNumLeft = NormalToBinary(NormalNumLeft);
+    std::string BinaryNumLeft = NormalToBinaryReverse(NormalNumLeft);
 
-    std::cout << "Первое число в прямом коде: " << BinaryNumLeft << '\n';
+    std::cout << "Первое число в обратном коде: " << BinaryNumLeft << '\n';
 
     std::cout << "Введите второе число\n";
 
@@ -198,8 +196,13 @@ int main() {
     std::string BinaryNumRight = NormalToBinaryReverse(NormalNumRight);
 
     std::cout << "Второе число в обратном коде: " << BinaryNumRight << '\n';
+    std::string SUM = Sum(BinaryNumLeft, BinaryNumRight);
 
-    std::cout << "Сумма в прямом коде: " << sum(BinaryNumLeft, BinaryNumRight)
+    std::string SUMstraight = ReverseToStraight(SUM);
+
+    std::cout << "Сумма в прямом коде: " << SUMstraight << '\n';
+
+    std::cout << "сумма в естественной форме: " << binaryToNormal(SUMstraight)
               << '\n';
 
     std::cout << "продолжить выполнение задания 2?\n";
