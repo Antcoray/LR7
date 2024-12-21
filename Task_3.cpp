@@ -5,6 +5,13 @@
 
 std::string Sum(const std::string& num1, const std::string& num2, int base);
 
+void intro() {
+  std::cout
+      << "Краткое условие задания: разработать функции для выполнения \n"
+         "операции сложения и функции для выполнения операции вычитания \n"
+         "в произвольной системе счисления\n";
+}
+
 int charToValue(char c) {
   int result = 0;
   if ('0' <= c && c <= '9') {
@@ -202,31 +209,97 @@ std::string correctInputk(int base) {
   return x;
 }
 
+int correctInputBase() {
+  std::cout << "Введите основание системы счисления [от 2 до 36]: ";
+  int x = 0;
+  bool incorrectInput = false;
+  do {
+    incorrectInput = false;
+    std::cin >> x;
+    if (std::cin.fail() || std::cin.peek() != '\n' || std::cin.peek() == '.') {
+      std::cin.clear();
+      std::cout << "Некорректный ввод" << std::endl;
+      std::cin.ignore(1000000, '\n');
+      incorrectInput = true;
+    }
+    if (!(x >= 2 && x <= 36) && incorrectInput == false) {
+      std::cout << "Некорректный ввод" << std::endl;
+      incorrectInput = true;
+    }
+  } while (incorrectInput);
+  return x;
+}
+
+int correctInputd() {
+  std::cout << "[1 - да / 0 - нет]";
+  int x = 0;
+  bool incorrectInput = false;
+  do {
+    incorrectInput = false;
+    std::cin >> x;
+    if (std::cin.fail() || std::cin.peek() != '\n' || std::cin.peek() == '.') {
+      std::cin.clear();
+      std::cout << "Некорректный ввод" << std::endl;
+      std::cin.ignore(1000000, '\n');
+      incorrectInput = true;
+    }
+    if (x != 1 && x != 0 && incorrectInput == false) {
+      std::cout << "Некорректный ввод" << std::endl;
+      incorrectInput = true;
+    }
+  } while (incorrectInput);
+  return x;
+}
+
+std::string correctInputOperator() {
+  std::cout << "Введите операцию (+ или -): ";
+  std::string x = "";
+  bool incorrectInput = false;
+  do {
+    incorrectInput = false;
+    std::cin >> x;
+    if (std::cin.fail() || std::cin.peek() != '\n' || std::cin.peek() == '.') {
+      std::cin.clear();
+      std::cout << "Некорректный ввод" << std::endl;
+      std::cin.ignore(1000000, '\n');
+      incorrectInput = true;
+    }
+    if (x != "+" && x != "-" && incorrectInput == false) {
+      std::cout << "Некорректный ввод" << std::endl;
+      incorrectInput = true;
+    }
+  } while (incorrectInput);
+  return x;
+}
+
 int main() {
+  intro();
   while (true) {
     int base;
-    std::string num1 = "", num2 = "", operation = "";
+    std::string num1 = "", num2 = "", Operator = "";
 
-    std::cout << "Введите основание системы счисления (от 2 до 36): ";
-    std::cin >> base;
-    while (base < 2 || base > 36) {
-      std::cout << "Неверное основание. Введите число от 2 до 36: ";
-      std::cin >> base;
-    }
+    base = correctInputBase();
 
     std::cout << "Введите первое число: ";
-    num1 = correctInputk(base);
-    std::cout << "Введите второе число: ";
-    std::cin >> num2;
-    std::cout << "Введите операцию (+ или -): ";
-    std::cin >> operation;
 
-    if (operation == "+") {
+    num1 = correctInputk(base);
+
+    std::cout << "Введите второе число: ";
+
+    num2 = correctInputk(base);
+
+    Operator = correctInputOperator();
+
+    if (Operator == "+") {
       std::cout << "Результат: " << Sum(num1, num2, base) << "\n";
-    } else if (operation == "-") {
+    } else if (Operator == "-") {
       std::cout << "Результат: " << difference(num1, num2, base) << "\n";
-    } else {
-      std::cout << "Неверный ввод\n";
+    }
+    std::cout << "продолжить выполнение задания 2?\n";
+    int a = correctInputd();
+    if (a == 0) {
+      break;
     }
   }
+  return 0;
 }
