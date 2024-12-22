@@ -1,0 +1,1 @@
+/usr/bin/c++ -fsanitize=address CMakeFiles/main_Asan.dir/main.cpp.o CMakeFiles/main_Asan.dir/Task_1.cpp.o CMakeFiles/main_Asan.dir/Task_2.cpp.o CMakeFiles/main_Asan.dir/Task_3.cpp.o CMakeFiles/main_Asan.dir/Task_4.cpp.o CMakeFiles/main_Asan.dir/Task_5.cpp.o -o main_Asan  -lString

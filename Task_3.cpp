@@ -1,18 +1,19 @@
+#include "Task_3.h"
+
 #include <algorithm>
 #include <cctype>
 #include <iostream>
 #include <string>
+std::string Sum3(const std::string& num1, const std::string& num2, int base);
 
-std::string Sum(const std::string& num1, const std::string& num2, int base);
-
-void intro() {
+void intro3() {
   std::cout
       << "Краткое условие задания: разработать функции для выполнения \n"
          "операции сложения и функции для выполнения операции вычитания \n"
          "в произвольной системе счисления\n";
 }
 
-int charToValue(char c) {
+int charToValue3(char c) {
   int result = 0;
   if ('0' <= c && c <= '9') {
     result = c - '0';
@@ -28,7 +29,7 @@ int charToValue(char c) {
   return result;
 }
 
-char valueToChar(int value) {
+char valueToChar3(int value) {
   char result = ' ';
   if (0 <= value && value <= 9) {
     result = '0' + value;
@@ -39,31 +40,31 @@ char valueToChar(int value) {
   return result;
 }
 
-std::string difference(const std::string& num1, const std::string& num2,
-                       int base) {
+std::string difference3(const std::string& num1, const std::string& num2,
+                        int base) {
   bool isNegative1 = num1[0] == '-';
   bool isNegative2 = num2[0] == '-';
   std::string n1 = isNegative1 ? num1.substr(1) : num1;
   std::string n2 = isNegative2 ? num2.substr(1) : num2;
   if (isNegative1 && isNegative2) {
     if (n1.size() < n2.size() || n1.size() == n2.size() && n1 < n2) {
-      return difference(n2, n1, base);
+      return difference3(n2, n1, base);
     }
     if (n1.size() > n2.size() || n1.size() == n2.size() && n1 > n2) {
-      return "-" + difference(n1, n2, base);
+      return "-" + difference3(n1, n2, base);
     }
   }
   if (isNegative1 != isNegative2) {
     if (isNegative1) {
-      return "-" + Sum(n1, n2, base);
+      return "-" + Sum3(n1, n2, base);
     }
     if (isNegative2) {
-      return Sum(n1, n2, base);
+      return Sum3(n1, n2, base);
     }
   }
   if (!isNegative1 && !isNegative2) {
     if (n1.size() < n2.size() || n1.size() == n2.size() && n1 < n2) {
-      return "-" + difference(n2, n1, base);
+      return "-" + difference3(n2, n1, base);
     }
   }
   std::string result;
@@ -71,18 +72,17 @@ std::string difference(const std::string& num1, const std::string& num2,
   int i = n1.size() - 1;
   int j = n2.size() - 1;
 
-
-  while (i >= 0 || j >= 0 || temp > 0) {// O(n) n=max(num1,num2)
+  while (i >= 0 || j >= 0 || temp > 0) {  // O(n) n=max(num1,num2)
     int digit_1 = 0;
     int digit_2 = 0;
     if (i >= 0) {
-      digit_1 = charToValue(n1[i]);
+      digit_1 = charToValue3(n1[i]);
       --i;
     } else {
       digit_1 = 0;
     }
     if (j >= 0) {
-      digit_2 = charToValue(n2[j]);
+      digit_2 = charToValue3(n2[j]);
       --j;
     } else {
       digit_2 = 0;
@@ -95,10 +95,10 @@ std::string difference(const std::string& num1, const std::string& num2,
     } else {
       temp = 0;
     }
-    result.push_back(valueToChar(diff));
+    result.push_back(valueToChar3(diff));
   }
 
-  while (result.size() > 1 && result.back() == '0') {//O(n)
+  while (result.size() > 1 && result.back() == '0') {  // O(n)
     result.pop_back();
   }
 
@@ -106,7 +106,7 @@ std::string difference(const std::string& num1, const std::string& num2,
   return result;
 }
 
-std::string Sum(const std::string& num1, const std::string& num2, int base) {
+std::string Sum3(const std::string& num1, const std::string& num2, int base) {
   bool isNegative1 = num1[0] == '-';
   bool isNegative2 = num2[0] == '-';
   std::string n1 = isNegative1 ? num1.substr(1) : num1;
@@ -117,17 +117,17 @@ std::string Sum(const std::string& num1, const std::string& num2, int base) {
   int i = n1.size() - 1;
   int j = n2.size() - 1;
 
-  while (i >= 0 || j >= 0 || temp > 0) {// O(n) n=max(num1,num2)
+  while (i >= 0 || j >= 0 || temp > 0) {  // O(n) n=max(num1,num2)
     int digit_1 = 0;
     int digit_2 = 0;
     if (i >= 0) {
-      digit_1 = charToValue(n1[i]);
+      digit_1 = charToValue3(n1[i]);
       --i;
     } else {
       digit_1 = 0;
     }
     if (j >= 0) {
-      digit_2 = charToValue(n2[j]);
+      digit_2 = charToValue3(n2[j]);
       --j;
     } else {
       digit_2 = 0;
@@ -135,7 +135,7 @@ std::string Sum(const std::string& num1, const std::string& num2, int base) {
 
     int sum = digit_1 + digit_2 + temp;
     temp = sum / base;
-    result.push_back(valueToChar(sum % base));
+    result.push_back(valueToChar3(sum % base));
   }
 
   std::reverse(result.begin(), result.end());
@@ -147,10 +147,10 @@ std::string Sum(const std::string& num1, const std::string& num2, int base) {
     std::string diff;
 
     if (isNegative1) {
-      diff = difference(n2, n1, base);
+      diff = difference3(n2, n1, base);
       return diff;
     } else {
-      diff = difference(n1, n2, base);
+      diff = difference3(n1, n2, base);
       return diff;
     }
   }
@@ -158,7 +158,7 @@ std::string Sum(const std::string& num1, const std::string& num2, int base) {
   return result;
 }
 
-bool checkForEquality(std::string str, int base) {
+bool checkForEquality3(std::string str, int base) {
   const char PossibleValues[36] = {'0', '1', '2', '3', '4', '5', '6', '7', '8',
                                    '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
                                    'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
@@ -168,7 +168,7 @@ bool checkForEquality(std::string str, int base) {
     str = str.substr(1);
   }
 
-  for (char c : str) {//O(n^2)
+  for (char c : str) {  // O(n^2)
     c = std::tolower(c);
 
     bool valid = false;
@@ -188,7 +188,7 @@ bool checkForEquality(std::string str, int base) {
   return true;
 }
 
-std::string correctInputk(int base) {
+std::string correctInputk3(int base) {
   std::string x = "";
   bool incorrectInput = false;
   do {
@@ -200,15 +200,15 @@ std::string correctInputk(int base) {
       std::cin.ignore(1000000, '\n');
       incorrectInput = true;
     }
-    if (!checkForEquality(x, base)) {
+    if (!checkForEquality3(x, base)) {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);//O(n)
+  } while (incorrectInput);  // O(n)
   return x;
 }
 
-int correctInputBase() {
+int correctInputBase3() {
   std::cout << "Введите основание системы счисления [от 2 до 36]: ";
   int x = 0;
   bool incorrectInput = false;
@@ -225,11 +225,11 @@ int correctInputBase() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);//O(n)
+  } while (incorrectInput);  // O(n)
   return x;
 }
 
-int correctInputd() {
+int correctInputd3() {
   std::cout << "[1 - да / 0 - нет]";
   int x = 0;
   bool incorrectInput = false;
@@ -246,11 +246,11 @@ int correctInputd() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);//O(n)
+  } while (incorrectInput);  // O(n)
   return x;
 }
 
-std::string correctInputOperator() {
+std::string correctInputOperator3() {
   std::cout << "Введите операцию (+ или -): ";
   std::string x = "";
   bool incorrectInput = false;
@@ -267,38 +267,37 @@ std::string correctInputOperator() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);//O(n)
+  } while (incorrectInput);  // O(n)
   return x;
 }
 
-int main() {
-  intro();
-  while (true) {//O(n)
+void Task_3_main() {
+  intro3();
+  while (true) {  // O(n)
     int base;
     std::string num1 = "", num2 = "", Operator = "";
 
-    base = correctInputBase();
+    base = correctInputBase3();
 
     std::cout << "Введите первое число: ";
 
-    num1 = correctInputk(base);
+    num1 = correctInputk3(base);
 
     std::cout << "Введите второе число: ";
 
-    num2 = correctInputk(base);
+    num2 = correctInputk3(base);
 
-    Operator = correctInputOperator();
+    Operator = correctInputOperator3();
 
     if (Operator == "+") {
-      std::cout << "Результат: " << Sum(num1, num2, base) << "\n";
+      std::cout << "Результат: " << Sum3(num1, num2, base) << "\n";
     } else if (Operator == "-") {
-      std::cout << "Результат: " << difference(num1, num2, base) << "\n";
+      std::cout << "Результат: " << difference3(num1, num2, base) << "\n";
     }
     std::cout << "продолжить выполнение задания 2?\n";
-    int a = correctInputd();
+    int a = correctInputd3();
     if (a == 0) {
       break;
     }
   }
-  return 0;
 }

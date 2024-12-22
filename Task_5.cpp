@@ -1,7 +1,8 @@
+#include "Task_5.h"
+
 #include <algorithm>
 #include <iostream>
 #include <string>
-
 const bool combinations30Day1[31][5] = {
     // 0
     {false, false, false, false, false},
@@ -222,7 +223,7 @@ void Day0() {
   std::cout << "\033[1;31mВАС ПОЙМАЛИ И ОТПРАВИЛИ В АД! Вы будете проверять "
                "консольный ввод до конца своих дней!\n\n\033[0mДалее "
                "\033[34mВЫ\033[0m будете "
-               "отыгрывать роль \033[1;32mдруг Патриция\033[0m, которому надо "
+               "отыгрывать роль \033[1;32mдруга Патриция\033[0m, которому надо "
                "найти бочку, отравленную "
                "\033[31mПользователем\033[0m\n\n";
   CONTINUE();
@@ -662,7 +663,7 @@ ______________________________
   return -1;
 }
 
-int main() {
+void Task_5_main() {
   while (true) {  // O(n)
     intro();
     Day0();
@@ -677,5 +678,4 @@ int main() {
       break;
     }
   }
-  return 0;
 }

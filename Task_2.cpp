@@ -1,8 +1,9 @@
+#include "Task_2.h"
+
 #include <cmath>
 #include <iostream>
 #include <string>
-
-int correctInputk() {
+int correctInputk2() {
   std::cout << "[1 - да / 0 - нет]";
   int x = 0;
   bool incorrectInput = false;
@@ -19,17 +20,17 @@ int correctInputk() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);//O(n)
+  } while (incorrectInput);  // O(n)
   return x;
 }
 
-void intro() {
+void intro2() {
   std::cout << "Условие задания: Найдите сумму двоичных чисел, заданных в "
                "естественной форме. Сложение выполните в обратном коде. Ответ "
                "выразите в естественной форме. \n ";
 }
 
-int CorrectInputNumber() {
+int CorrectInputNumber2() {
   bool incorrect_input = false;
   bool error = false;
   double NumInput = 0.0;
@@ -52,15 +53,15 @@ int CorrectInputNumber() {
       incorrect_input = true;
       std::cout << "Некорректный ввод\n";
     }
-  } while (incorrect_input);//O(n)
+  } while (incorrect_input);  // O(n)
   return static_cast<int>(NumInput);
 }
 
-std::string Sum(std::string left, std::string right) {
+std::string Sum2(std::string left, std::string right) {
   std::string sum(32, '0');
   int NumberOfSymbols = 32;
   std::string temp = "0";
-  for (int i = 0; i < 32; ++i) {//O(n)
+  for (int i = 0; i < 32; ++i) {  // O(n)
     // 0 0 0
     if (left[31 - i] == '0' && right[31 - i] == '0' && temp == "0") {
       sum[31 - i] = '0';
@@ -112,14 +113,14 @@ std::string Sum(std::string left, std::string right) {
   }
 
   if (temp == "1") {
-    sum = Sum("00000000000000000000000000000001", sum);
+    sum = Sum2("00000000000000000000000000000001", sum);
   }
   return sum;
 }
 
-std::string ReverseToStraight(std::string sum) {
+std::string ReverseToStraight2(std::string sum) {
   if (sum[0] == '1') {
-    for (int i = 1; i < 32; ++i) {//O(n)
+    for (int i = 1; i < 32; ++i) {  // O(n)
       if (sum[i] == '0') {
         sum[i] = '1';
       } else {
@@ -130,7 +131,7 @@ std::string ReverseToStraight(std::string sum) {
   return sum;
 }
 
-std::string NormalToBinaryReverse(double NormalNum) {
+std::string NormalToBinaryReverse2(double NormalNum) {
   if (NormalNum == 0) {
     return "00000000000000000000000000000000";
   }
@@ -138,13 +139,13 @@ std::string NormalToBinaryReverse(double NormalNum) {
   std::string BinaryNum = "";
   std::string sign = NormalNum < 0 ? "1" : "0";
 
-  int IntegerPart = abs(NormalNum);
+  int IntegerPart = std::abs(NormalNum);
   IntegerPartStr = std::to_string(static_cast<int>(IntegerPart));
 
   int TempInt = IntegerPart;
   std::string RemaindersInt = "";
 
-  while (TempInt != 0) {//O(n)
+  while (TempInt != 0) {  // O(n)
     int Remainder = TempInt % 2;
     TempInt /= 2;
     RemaindersInt.insert(0, std::to_string(Remainder));
@@ -167,9 +168,9 @@ std::string NormalToBinaryReverse(double NormalNum) {
   return BinaryNum;
 }
 
-int binaryToNormal(std::string BinaryNum) {
+int binaryToNormal2(std::string BinaryNum) {
   int NormalNum = 0;
-  for (int i = 1; i < 32; ++i) {//O(n)
+  for (int i = 1; i < 32; ++i) {  // O(n)
     if (BinaryNum[i] == '1') {
       NormalNum += pow(2, 31 - i);
     }
@@ -180,36 +181,35 @@ int binaryToNormal(std::string BinaryNum) {
   return NormalNum;
 }
 
-int main() {
-  intro();
-  while (true) {//O(n)
+void Task_2_main() {
+  intro2();
+  while (true) {  // O(n)
     std::cout << "Введите первое число:\n";
 
-    int NormalNumLeft = CorrectInputNumber();
-    std::string BinaryNumLeft = NormalToBinaryReverse(NormalNumLeft);
+    int NormalNumLeft = CorrectInputNumber2();
+    std::string BinaryNumLeft = NormalToBinaryReverse2(NormalNumLeft);
 
     std::cout << "Первое число в обратном коде: " << BinaryNumLeft << '\n';
 
     std::cout << "Введите второе число\n";
 
-    int NormalNumRight = CorrectInputNumber();
-    std::string BinaryNumRight = NormalToBinaryReverse(NormalNumRight);
+    int NormalNumRight = CorrectInputNumber2();
+    std::string BinaryNumRight = NormalToBinaryReverse2(NormalNumRight);
 
     std::cout << "Второе число в обратном коде: " << BinaryNumRight << '\n';
-    std::string SUM = Sum(BinaryNumLeft, BinaryNumRight);
+    std::string SUM = Sum2(BinaryNumLeft, BinaryNumRight);
 
-    std::string SUMstraight = ReverseToStraight(SUM);
+    std::string SUMstraight = ReverseToStraight2(SUM);
 
     std::cout << "Сумма в прямом коде: " << SUMstraight << '\n';
 
-    std::cout << "сумма в естественной форме: " << binaryToNormal(SUMstraight)
+    std::cout << "сумма в естественной форме: " << binaryToNormal2(SUMstraight)
               << '\n';
 
     std::cout << "продолжить выполнение задания 2?\n";
-    int a = correctInputk();
+    int a = correctInputk2();
     if (a == 0) {
       break;
     }
   }
-  return 0;
 }

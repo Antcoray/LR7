@@ -1,0 +1,5 @@
+/home/anton/LABS/453501/ОАиП/LR7/build/CMakeFiles/main.dir
+/home/anton/LABS/453501/ОАиП/LR7/build/CMakeFiles/AddressSan.dir
+/home/anton/LABS/453501/ОАиП/LR7/build/CMakeFiles/ThreadSan.dir
+/home/anton/LABS/453501/ОАиП/LR7/build/CMakeFiles/edit_cache.dir
+/home/anton/LABS/453501/ОАиП/LR7/build/CMakeFiles/rebuild_cache.dir

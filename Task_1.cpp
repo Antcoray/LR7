@@ -1,8 +1,10 @@
+#include "Task_1.h"
+
 #include <cmath>
 #include <iostream>
 #include <string>
 
-int correctInputk() {
+int correctInputk1() {
   std::cout << "[1 - да / 0 - нет]";
   int x = 0;
   bool incorrectInput = false;
@@ -19,16 +21,16 @@ int correctInputk() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput); //O(n)
+  } while (incorrectInput);  // O(n)
   return x;
 }
 
-void intro() {
+void intro1() {
   std::cout << "Условие задания: перевести числа из естественной формы в "
                "обратный код \n";
 }
 
-int CorrectInputNumber() {
+int CorrectInputNumber1() {
   bool incorrect_input = false;
   bool error = false;
   double NumInput = 0.0;
@@ -51,11 +53,11 @@ int CorrectInputNumber() {
       incorrect_input = true;
       std::cout << "Некорректный ввод\n";
     }
-  } while (incorrect_input);//O(n)
+  } while (incorrect_input);  // O(n)
   return static_cast<int>(NumInput);
 }
 
-std::string NormalToBinaryReverse(double NormalNum) {
+std::string NormalToBinaryReverse1(double NormalNum) {
   if (NormalNum == 0) {
     return "00000000000000000000000000000000";
   }
@@ -63,24 +65,24 @@ std::string NormalToBinaryReverse(double NormalNum) {
   std::string BinaryNum = "";
   std::string sign = NormalNum < 0 ? "1" : "0";
 
-  int IntegerPart = abs(NormalNum);
+  int IntegerPart = std::abs(NormalNum);
   IntegerPartStr = std::to_string(static_cast<int>(IntegerPart));
 
   int TempInt = IntegerPart;
   std::string RemaindersInt = "";
 
-  while (TempInt != 0) { //O(n)
+  while (TempInt != 0) {  // O(n)
     int Remainder = TempInt % 2;
     TempInt /= 2;
     RemaindersInt.insert(0, std::to_string(Remainder));
   }
 
-  RemaindersInt.insert(0, 31 - RemaindersInt.length(), '0'); //O(n)
+  RemaindersInt.insert(0, 31 - RemaindersInt.length(), '0');  // O(n)
 
   if (sign == "0") {
     BinaryNum = sign + RemaindersInt;
   } else {
-    for (char& c : RemaindersInt) {//O(n)
+    for (char& c : RemaindersInt) {  // O(n)
       if (c == '0') {
         c = '1';
       } else {
@@ -92,20 +94,19 @@ std::string NormalToBinaryReverse(double NormalNum) {
   return BinaryNum;
 }
 
-int main() {
-  intro();
-  while (true) {//O(n)
+void Task_1_main() {
+  intro1();
+  while (true) {  // O(n)
     std::cout
         << "Введите число в естественной форме для перевода в обратный код\n";
-    int NormalNum = CorrectInputNumber();
-    std::string BinaryNum = NormalToBinaryReverse(NormalNum);
+    int NormalNum = CorrectInputNumber1();
+    std::string BinaryNum = NormalToBinaryReverse1(NormalNum);
 
     std::cout << "Обратный код числа: " << BinaryNum << '\n';
     std::cout << "продолжить выполнение задания 1?\n";
-    int a = correctInputk();
+    int a = correctInputk1();
     if (a == 0) {
       break;
     }
   }
-  return 0;
 }

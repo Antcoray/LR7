@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/main.dir/main.cpp.o CMakeFiles/main.dir/Task_1.cpp.o CMakeFiles/main.dir/Task_2.cpp.o CMakeFiles/main.dir/Task_3.cpp.o CMakeFiles/main.dir/Task_4.cpp.o CMakeFiles/main.dir/Task_5.cpp.o -o main

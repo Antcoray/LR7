@@ -1,0 +1,1 @@
+/usr/bin/c++ -fsanitize=address CMakeFiles/AddressSan.dir/main.cpp.o CMakeFiles/AddressSan.dir/Task_1.cpp.o CMakeFiles/AddressSan.dir/Task_2.cpp.o CMakeFiles/AddressSan.dir/Task_3.cpp.o CMakeFiles/AddressSan.dir/Task_4.cpp.o CMakeFiles/AddressSan.dir/Task_5.cpp.o -o AddressSan
