@@ -19,7 +19,7 @@ int correctInputk() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);
+  } while (incorrectInput); //O(n)
   return x;
 }
 
@@ -51,7 +51,7 @@ int CorrectInputNumber() {
       incorrect_input = true;
       std::cout << "Некорректный ввод\n";
     }
-  } while (incorrect_input);
+  } while (incorrect_input);//O(n)
   return static_cast<int>(NumInput);
 }
 
@@ -69,18 +69,18 @@ std::string NormalToBinaryReverse(double NormalNum) {
   int TempInt = IntegerPart;
   std::string RemaindersInt = "";
 
-  while (TempInt != 0) {
+  while (TempInt != 0) { //O(n)
     int Remainder = TempInt % 2;
     TempInt /= 2;
     RemaindersInt.insert(0, std::to_string(Remainder));
   }
 
-  RemaindersInt.insert(0, 31 - RemaindersInt.length(), '0');
+  RemaindersInt.insert(0, 31 - RemaindersInt.length(), '0'); //O(n)
 
   if (sign == "0") {
     BinaryNum = sign + RemaindersInt;
   } else {
-    for (char& c : RemaindersInt) {
+    for (char& c : RemaindersInt) {//O(n)
       if (c == '0') {
         c = '1';
       } else {
@@ -94,7 +94,7 @@ std::string NormalToBinaryReverse(double NormalNum) {
 
 int main() {
   intro();
-  while (true) {
+  while (true) {//O(n)
     std::cout
         << "Введите число в естественной форме для перевода в обратный код\n";
     int NormalNum = CorrectInputNumber();

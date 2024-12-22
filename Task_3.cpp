@@ -71,8 +71,8 @@ std::string difference(const std::string& num1, const std::string& num2,
   int i = n1.size() - 1;
   int j = n2.size() - 1;
 
-  // O(max(num1, num2))
-  while (i >= 0 || j >= 0 || temp > 0) {
+
+  while (i >= 0 || j >= 0 || temp > 0) {// O(n) n=max(num1,num2)
     int digit_1 = 0;
     int digit_2 = 0;
     if (i >= 0) {
@@ -98,7 +98,7 @@ std::string difference(const std::string& num1, const std::string& num2,
     result.push_back(valueToChar(diff));
   }
 
-  while (result.size() > 1 && result.back() == '0') {
+  while (result.size() > 1 && result.back() == '0') {//O(n)
     result.pop_back();
   }
 
@@ -117,8 +117,7 @@ std::string Sum(const std::string& num1, const std::string& num2, int base) {
   int i = n1.size() - 1;
   int j = n2.size() - 1;
 
-  // O(max(num1, num2))
-  while (i >= 0 || j >= 0 || temp > 0) {
+  while (i >= 0 || j >= 0 || temp > 0) {// O(n) n=max(num1,num2)
     int digit_1 = 0;
     int digit_2 = 0;
     if (i >= 0) {
@@ -169,7 +168,7 @@ bool checkForEquality(std::string str, int base) {
     str = str.substr(1);
   }
 
-  for (char c : str) {
+  for (char c : str) {//O(n^2)
     c = std::tolower(c);
 
     bool valid = false;
@@ -205,7 +204,7 @@ std::string correctInputk(int base) {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);
+  } while (incorrectInput);//O(n)
   return x;
 }
 
@@ -226,7 +225,7 @@ int correctInputBase() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);
+  } while (incorrectInput);//O(n)
   return x;
 }
 
@@ -247,7 +246,7 @@ int correctInputd() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);
+  } while (incorrectInput);//O(n)
   return x;
 }
 
@@ -268,13 +267,13 @@ std::string correctInputOperator() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);
+  } while (incorrectInput);//O(n)
   return x;
 }
 
 int main() {
   intro();
-  while (true) {
+  while (true) {//O(n)
     int base;
     std::string num1 = "", num2 = "", Operator = "";
 

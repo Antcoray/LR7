@@ -19,7 +19,7 @@ int correctInputk() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);
+  } while (incorrectInput);//O(n)
   return x;
 }
 
@@ -52,7 +52,7 @@ int CorrectInputNumber() {
       incorrect_input = true;
       std::cout << "Некорректный ввод\n";
     }
-  } while (incorrect_input);
+  } while (incorrect_input);//O(n)
   return static_cast<int>(NumInput);
 }
 
@@ -60,7 +60,7 @@ std::string Sum(std::string left, std::string right) {
   std::string sum(32, '0');
   int NumberOfSymbols = 32;
   std::string temp = "0";
-  for (int i = 0; i < 32; ++i) {
+  for (int i = 0; i < 32; ++i) {//O(n)
     // 0 0 0
     if (left[31 - i] == '0' && right[31 - i] == '0' && temp == "0") {
       sum[31 - i] = '0';
@@ -119,7 +119,7 @@ std::string Sum(std::string left, std::string right) {
 
 std::string ReverseToStraight(std::string sum) {
   if (sum[0] == '1') {
-    for (int i = 1; i < 32; ++i) {
+    for (int i = 1; i < 32; ++i) {//O(n)
       if (sum[i] == '0') {
         sum[i] = '1';
       } else {
@@ -144,7 +144,7 @@ std::string NormalToBinaryReverse(double NormalNum) {
   int TempInt = IntegerPart;
   std::string RemaindersInt = "";
 
-  while (TempInt != 0) {
+  while (TempInt != 0) {//O(n)
     int Remainder = TempInt % 2;
     TempInt /= 2;
     RemaindersInt.insert(0, std::to_string(Remainder));
@@ -169,7 +169,7 @@ std::string NormalToBinaryReverse(double NormalNum) {
 
 int binaryToNormal(std::string BinaryNum) {
   int NormalNum = 0;
-  for (int i = 1; i < 32; ++i) {
+  for (int i = 1; i < 32; ++i) {//O(n)
     if (BinaryNum[i] == '1') {
       NormalNum += pow(2, 31 - i);
     }
@@ -182,7 +182,7 @@ int binaryToNormal(std::string BinaryNum) {
 
 int main() {
   intro();
-  while (true) {
+  while (true) {//O(n)
     std::cout << "Введите первое число:\n";
 
     int NormalNumLeft = CorrectInputNumber();

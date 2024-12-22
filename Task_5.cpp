@@ -186,7 +186,7 @@ int correctInputD() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);
+  } while (incorrectInput);  // O(n)
   return x;
 }
 
@@ -268,7 +268,7 @@ void Day1intro() {
 
 std::string DecideWhichSlaveForTableDay1(int i) {
   std::string listOfSlaves = "00000";
-  for (int j = 1; j < 6; ++j) {
+  for (int j = 1; j < 6; ++j) {  // O(n)
     if (combinations30Day1[i][j - 1]) {
       listOfSlaves[j - 1] = j + '0';
     } else {
@@ -382,7 +382,7 @@ _____________________________________________
 | номер отряда | номера рабов | группы бочек|
 |-------------------------------------------|)";
   std::cout << startOfTable << '\n';
-  for (int i = 1; i < 31; ++i) {
+  for (int i = 1; i < 31; ++i) {  // O(n)
     if (i < 10) {
       std::cout << "|       " << i << "      |"
                 << DecideWhichSlaveForTableDay1(i) << "         |"
@@ -414,13 +414,13 @@ int correctInputk() {
       std::cout << "Некорректный ввод" << std::endl;
       incorrectInput = true;
     }
-  } while (incorrectInput);
+  } while (incorrectInput);  // O(n)
   return x;
 }
 
 std::string DecideWhichSlaveForTable30Day2(int i) {
   std::string listOfSlaves = "00000";
-  for (int j = 1; j < 6; ++j) {
+  for (int j = 1; j < 6; ++j) {  // O(n)
     if (combinations30Day2[i][j - 1]) {
       listOfSlaves[j - 1] = j + '0';
     } else {
@@ -432,7 +432,7 @@ std::string DecideWhichSlaveForTable30Day2(int i) {
 
 int findRightBarrelInput0(bool slave1, bool slave2, bool slave3, bool slave4,
                           bool slave5) {
-  for (int i = 0; i < 31; ++i) {
+  for (int i = 0; i < 31; ++i) {  // O(n)
     if (combinations30Day2[i][0] == slave1 &&
         combinations30Day2[i][1] == slave2 &&
         combinations30Day2[i][2] == slave3 &&
@@ -446,7 +446,7 @@ int findRightBarrelInput0(bool slave1, bool slave2, bool slave3, bool slave4,
 
 int findRightBarrelInput1to5(bool slave1, bool slave2, bool slave3, bool slave4,
                              int num) {
-  for (int i = 0; i < 16; ++i) {
+  for (int i = 0; i < 16; ++i) {  // O(n)
     if (combinations16[i][0] == slave1 && combinations16[i][1] == slave2 &&
         combinations16[i][2] == slave3 && combinations16[i][3] == slave4) {
       return (num - 1) * 16 + i + 1;
@@ -456,7 +456,7 @@ int findRightBarrelInput1to5(bool slave1, bool slave2, bool slave3, bool slave4,
 }
 
 int findRightBarrelInput6to15(bool slave1, bool slave2, bool slave3, int num) {
-  for (int i = 0; i < 8; ++i) {
+  for (int i = 0; i < 8; ++i) {  // O(n)
     if (combinations16[i][0] == slave1 && combinations16[i][1] == slave2 &&
         combinations16[i][2] == slave3) {
       return 80 + (num - 6) * 8 + i + 1;
@@ -466,7 +466,7 @@ int findRightBarrelInput6to15(bool slave1, bool slave2, bool slave3, int num) {
 }
 
 int findRightBarrelInput16to25(bool slave1, bool slave2, int num) {
-  for (int i = 0; i < 4; ++i) {
+  for (int i = 0; i < 4; ++i) {  // O(n)
     if (combinations4[i][0] == slave1 && combinations4[i][1] == slave2) {
       return 160 + (num - 16) * 4 + i + 1;
     }
@@ -475,7 +475,7 @@ int findRightBarrelInput16to25(bool slave1, bool slave2, int num) {
 }
 
 int findRightBarrelInput26to30(bool slave1, int num) {
-  for (int i = 0; i < 2; ++i) {
+  for (int i = 0; i < 2; ++i) {  // O(n)
     if (combinations4[i][0] == slave1) {
       return 200 + (num - 26) * 2 + i + 1;
     }
@@ -485,7 +485,7 @@ int findRightBarrelInput26to30(bool slave1, int num) {
 
 std::string DecideWhichSlaveForTable16Day2(int i) {
   std::string listOfSlaves = "0000";
-  for (int j = 1; j < 5; ++j) {
+  for (int j = 1; j < 5; ++j) {  // O(n)
     if (combinations16[i][j - 1]) {
       listOfSlaves[j - 1] = j + '0';
     } else {
@@ -497,7 +497,7 @@ std::string DecideWhichSlaveForTable16Day2(int i) {
 
 std::string DecideWhichSlaveForTable8Day2(int i) {
   std::string listOfSlaves = "000";
-  for (int j = 1; j < 4; ++j) {
+  for (int j = 1; j < 4; ++j) {  // O(n)
     if (combinations8[i][j - 1]) {
       listOfSlaves[j - 1] = j + '0';
     } else {
@@ -509,7 +509,7 @@ std::string DecideWhichSlaveForTable8Day2(int i) {
 
 std::string DecideWhichSlaveForTable4Day2(int i) {
   std::string listOfSlaves = "00";
-  for (int j = 1; j < 3; ++j) {
+  for (int j = 1; j < 3; ++j) {  // O(n)
     if (combinations8[i][j - 1]) {
       listOfSlaves[j - 1] = j + '0';
     } else {
@@ -521,7 +521,7 @@ std::string DecideWhichSlaveForTable4Day2(int i) {
 
 std::string DecideWhichSlaveForTable2Day2(int i) {
   std::string listOfSlaves = "0";
-  for (int j = 1; j < 2; ++j) {
+  for (int j = 1; j < 2; ++j) {  // O(n)
     if (combinations8[i][j - 1]) {
       listOfSlaves[j - 1] = j + '0';
     } else {
@@ -541,7 +541,7 @@ ______________________________
   // 30
   if (k == 0) {
     std::cout << startOfTable << '\n';
-    for (int i = 1; i < 31; ++i) {
+    for (int i = 1; i < 31; ++i) {  // O(n)
       if (i < 10) {
         std::cout << "|" << DecideWhichSlaveForTable30Day2(i - 1)
                   << "         |"
@@ -570,7 +570,7 @@ ______________________________
     return result;
   } else if (k <= 5 && k >= 1) {
     std::cout << startOfTable << '\n';
-    for (int i = 1; i < 17; ++i) {
+    for (int i = 1; i < 17; ++i) {  // O(n)
       if (i < 10) {
         std::cout << "|" << DecideWhichSlaveForTable16Day2(i - 1)
                   << "         |"
@@ -597,7 +597,7 @@ ______________________________
     return result;
   } else if (k <= 15 && k >= 6) {
     std::cout << startOfTable << '\n';
-    for (int i = 1; i < 9; ++i) {
+    for (int i = 1; i < 9; ++i) {  // O(n)
       if (i < 10) {
         std::cout << "|" << DecideWhichSlaveForTable8Day2(i - 1) << "         |"
                   << " " << 80 + (k - 6) * 8 + i << "\n";
@@ -620,7 +620,7 @@ ______________________________
     return result;
   } else if (k <= 25 && k >= 16) {
     std::cout << startOfTable << '\n';
-    for (int i = 1; i < 5; ++i) {
+    for (int i = 1; i < 5; ++i) {  // O(n)
       if (i < 10) {
         std::cout << "|" << DecideWhichSlaveForTable4Day2(i - 1) << "         |"
                   << " " << 160 + (k - 16) * 4 + i << "\n";
@@ -641,7 +641,7 @@ ______________________________
     return result;
   } else if (k <= 30 && k >= 26) {
     std::cout << startOfTable << '\n';
-    for (int i = 1; i < 3; ++i) {
+    for (int i = 1; i < 3; ++i) {  // O(n)
       if (i < 10) {
         std::cout << "|" << DecideWhichSlaveForTable2Day2(i - 1) << "         |"
                   << " " << 200 + (k - 26) * 2 + i << "\n";
@@ -663,12 +663,19 @@ ______________________________
 }
 
 int main() {
-  intro();
-  Day0();
-  Day1intro();
-  PrintTableDay1();
-  int k = correctInputk();
-  int result = Day2(k);
-  std::cout << result;
+  while (true) {  // O(n)
+    intro();
+    Day0();
+    Day1intro();
+    PrintTableDay1();
+    int k = correctInputk();
+    int result = Day2(k);
+    std::cout << "Найденная бочка: " << result << "\n\n";
+    std::cout << "продолжить выполнение задания 5?\n";
+    int n = correctInputD();
+    if (n == 0) {
+      break;
+    }
+  }
   return 0;
 }
